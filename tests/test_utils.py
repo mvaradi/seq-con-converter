@@ -12,5 +12,7 @@ class TestUtils(TestCase):
         # Test if the function just return a HEX input
         self.assertEqual(rgb_to_hex("#fff"), "#fff")
 
-    # def test_rgb_to_het_raises_error(self):
-    #     self.assertRaises(rgb_to_hex("foo"), ValueError("Only RGB or HEX input allowed"))
+    def test_rgb_to_het_raises_error(self):
+        with self.assertRaises(ValueError) as context:
+            rgb_to_hex("foo")
+            self.assertTrue('Only RGB or HEX input allowed' in context.exception)
