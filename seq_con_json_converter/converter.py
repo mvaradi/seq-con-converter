@@ -5,10 +5,10 @@ from seq_con_json_converter.utils import rgb_to_hex
 class Converter:
     """
     The Converter can be used to convert an input JSON file that has the old format of the
-    sequence conservation PDBe-KB API endpoint into a new JSON format.
+    sequence conservation PDBe-KB API endpoint into a new_v1 JSON format.
 
-    I use this to benchmark the size of the new data format and see what level of improvement
-    we can achieve if switching to the new format.
+    I use this to benchmark the size of the new_v1 data format and see what level of improvement
+    we can achieve if switching to the new_v1 format.
     """
 
     def __init__(self, path_to_input, path_to_output):
@@ -33,7 +33,7 @@ class Converter:
 
     def convert(self):
         """
-        Read the input JSON data and convert it to a new JSON data format. It also ensures that color coding is
+        Read the input JSON data and convert it to a new_v1 JSON data format. It also ensures that color coding is
         consistently done using HEX encoding.
         :return: None
         """
@@ -47,29 +47,41 @@ class Converter:
             "data": {
                 "index": [],
                 "conservation_score": [],
-                "residue": []
+                "probability_A": [],
+                "probability_C": [],
+                "probability_D": [],
+                "probability_E": [],
+                "probability_F": [],
+                "probability_G": [],
+                "probability_H": [],
+                "probability_I": [],
+                "probability_K": [],
+                "probability_L": [],
+                "probability_M": [],
+                "probability_N": [],
+                "probability_P": [],
+                "probability_Q": [],
+                "probability_R": [],
+                "probability_S": [],
+                "probability_T": [],
+                "probability_V": [],
+                "probability_W": [],
+                "probability_Y": []
             }
         }
 
         for data_item in self.input_data[accession]["data"]:
             new_data["data"]["index"].append(data_item["start"])
             new_data["data"]["conservation_score"].append(data_item["conservation_score"])
-            residue = {
-                "one_letter_code": [],
-                "probability": [],
-                "color": []
-            }
             for aa in data_item["amino"]:
-                residue["one_letter_code"].append(aa["oneLetterCode"])
-                residue["probability"].append(aa["probability"])
-                residue["color"].append(rgb_to_hex(aa["color"]))
-            new_data["data"]["residue"].append(residue)
+                key = "probability_" + aa["oneLetterCode"]
+                new_data["data"][key].append(aa["probability"])
 
         self.output_data = new_data
 
     def save_json(self):
         """
-        Save the new JSON data to a JSON file.
+        Save the new_v1 JSON data to a JSON file.
         :return: None
         """
         output_json_file = open(self.path_to_output, "w")
