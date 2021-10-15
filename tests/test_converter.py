@@ -68,24 +68,30 @@ MOCK_INPUT = {
 MOCK_EXPECTED = {
     "identifier": "FOO",
     "length": 42,
-    "main_track_color": "#d3d3d3",
-    "sub_track_color": "#FFF",
     "seq_id": "ABCD1234",
     "data": {
         "index": [1, 2],
         "conservation_score": [0, 0.2],
-        "residue": [
-            {
-                "one_letter_code": ["A", "P"],
-                "probability": [0.3, 0.5],
-                "color": ["#d3d3d3", "#FFF"]
-            },
-{
-                "one_letter_code": ["C", "S"],
-                "probability": [0.1, 0.4],
-                "color": ["#FFF", "#000"]
-            }
-        ]
+        "probability_A": [0.3],
+        "probability_C": [0.1],
+        "probability_D": [],
+        "probability_E": [],
+        "probability_F": [],
+        "probability_G": [],
+        "probability_H": [],
+        "probability_I": [],
+        "probability_K": [],
+        "probability_L": [],
+        "probability_M": [],
+        "probability_N": [],
+        "probability_P": [0.5],
+        "probability_Q": [],
+        "probability_R": [],
+        "probability_S": [0.4],
+        "probability_T": [],
+        "probability_V": [],
+        "probability_W": [],
+        "probability_Y": []
     }
 }
 

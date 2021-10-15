@@ -41,8 +41,6 @@ class Converter:
         new_data = {
             "identifier": accession,
             "length": self.input_data[accession]["length"],
-            "main_track_color": rgb_to_hex(self.input_data[accession]["labelColor"]),
-            "sub_track_color": rgb_to_hex(self.input_data[accession]["data"][0]["labelColor"]),
             "seq_id": self.input_data[accession]["seqId"],
             "data": {
                 "index": [],
